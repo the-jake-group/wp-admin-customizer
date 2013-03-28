@@ -1,0 +1,230 @@
+/*
+
+Variables that need defining in our PHP:
+
+
+	@primary: #ffffff;
+	@rounded: off;
+	@sm-logo: url('../img/small-logopng');
+	@sm-hover: on;
+	@lg-logo: url('../img/small-logo.png');
+	@lg-width: 78px;
+	@lg-height: 82px;
+	@sm-switch: custom;
+	@lg-switch: wordpress;
+
+*/
+
+
+@darker: darken(@primary, 5%);
+@lighter: lighten(@primary, 5%);
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Switch statements defining what to do with our 
+	logos.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.small-logo( wordpress ) {
+	background-image: url( ../../../../wp-includes/images/admin-bar-sprite.png );
+}
+.small-logo( custom ) {
+	background-image: @sm-logo;
+	background-position: 0px 0px;
+}
+
+.small-logo-hover( @switch, @hover ) when (@switch = wordpress) and (@hover = on) {
+	background-position: 0px -104px;
+}
+.small-logo-hover( @switch, @hover ) when (@switch = wordpress) and (@hover = off) {
+	background-position: 0px -104px;
+}
+
+.small-logo-hover( @switch, @hover ) when (@switch = custom) and (@hover = on) {
+	background-position: 0px -20px;
+}
+.small-logo-hover( @switch, @hover ) when (@switch = custom) and (@hover = off) {
+	background-position: 0px 0px;
+}
+
+
+
+
+.large-logo (wordpress)	{
+}
+
+.large-logo (custom)	{
+	background: @lg-logo 50% 50% no-repeat;
+	width: @lg-width;
+	height: @lg-height;
+	background-size: auto;
+	background-position: center center;
+	margin:0 auto 15px;
+}
+
+/*=====================================================
+	Text color options for the admin bar, and icons
+=====================================================*/
+
+.admin-text (@primary) when (lightness(@primary) >= 50%) {
+	color: #333333;
+}
+.admin-text (@primary) when (lightness(@primary) < 50%) {
+	color: #e5e5e5;
+}
+
+.update-icon (@primary) when (lightness(@primary) >= 50%) {
+	background: url(../img/update-dark.png);
+	background-position: 0;
+}
+
+.comments-icon (@primary) when (lightness(@primary) >= 50%) {
+	background: url(../img/comment-dark.png);
+	background-position: 0;
+}
+
+.new-icon (@primary) when (lightness(@primary) >= 50%)	{
+	background-position: -2px -203px;
+}
+
+
+.lightness-testing (@primary) when (lightness(@primary) >= 50%),   {
+	background-position: 0 -104px;
+}
+
+
+.wordpress-logo (wordpress)	{
+	.lightness-testing(@primary);
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Image background for the logo in the top left
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+	#wp-admin-bar-wp-logo > .ab-item .ab-icon {
+		.small-logo(@sm-switch);
+	}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Admin Bar Basic styles.  No hovers, just plain.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+	#wpadminbar * {
+		text-shadow: @darker 0 -1px 0;
+		.admin-text(@primary);
+	}
+
+/*	Changes the color for most of the top admin bar.  Somehow misses the far right section though.	*/
+	#wpadminbar,
+/*	This line takes care of the far right section	*/
+	#wpadminbar .ab-top-secondary {
+		background-color: @primary;
+		background-image: -moz-linear-gradient(bottom, @primary, @lighter);
+		background-image: -webkit-gradient(linear,left bottom,left top,from(@primary),to(@lighter));
+	}
+
+/*	Changes the color for the border-right of the admin bar list items.	*/
+	#wpadminbar .quicklinks > ul > li {
+		border-right: 1px solid @lighter;
+	}
+
+/*	Changes the color for the border-right of the admin bar list item links, which completes the inset effect.	*/
+	#wpadminbar .quicklinks > ul > li > a,
+	#wpadminbar .quicklinks > ul > li > .ab-empty-item {
+		border-right: 1px solid @darker;
+	}
+
+/*	Changes the color for the border-left of the secondary admin bar area.	*/
+	#wpadminbar .quicklinks .ab-top-secondary > li {
+		border-left: 1px solid @darker;
+	}
+
+/*	Changes the color for the border-left of the  secondary admin bar list item links.	*/
+	#wpadminbar .quicklinks .ab-top-secondary > li > a, 
+	#wpadminbar .quicklinks .ab-top-secondary > li > .ab-empty-item {
+		border-left: 1px solid @lighter;
+	}
+
+/*	Changes the icons when the icons need changing */
+	#wp-admin-bar-comments > .ab-item .ab-icon {
+		.comments-icon(@primary);
+	}
+
+	#wp-admin-bar-updates > .ab-item .ab-icon {
+		.update-icon(@primary);
+	}
+
+	#wpadminbar #wp-admin-bar-new-content > .ab-item .ab-icon  {
+		.new-icon(@primary);
+	}
+
+
+	#wp-admin-bar-wp-logo > .ab-item .ab-icon {
+		.wordpress-logo( @sm-switch );
+	}
+
+	#wpadminbar.nojs #wp-admin-bar-wp-logo:hover > .ab-item .ab-icon,
+	#wpadminbar #wp-admin-bar-wp-logo.hover > .ab-item .ab-icon	{
+		.small-logo-hover( @sm-switch, @sm-hover );
+	}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Hover styles for the admin bar.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+	/*	This controls the color on hover for empty items, and the background before hoverInetnt is called	*/
+	#wpadminbar .ab-top-menu > li:hover > .ab-item,
+	#wpadminbar .ab-top-menu > li > .ab-item:focus,
+	#wpadminbar.nojq .quicklinks .ab-top-menu > li > .ab-item:focus {
+		background-color: @primary;
+		background-image: -moz-linear-gradient(bottom, @darker, @primary);
+		background-image: -webkit-gradient(linear,left bottom,left top,from(@darker),to(@primary));
+	}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Login Page Styling
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+	#login h1 a { 
+		.large-logo(@lg-switch)
+	}
+/*
+	.login div.updated, .login .message {
+		background-color: @message-color;
+		border-color: @message-color - #111;
+	}
+*/
+	.login #loginform	{
+		border-radius: @rounded;
+		-webkit-border-radius: @rounded;
+		-moz-border-radius: @rounded;
+	}
+
+
+
+
+
+
+
+
+
+
+
+/*=====================================================
+	Defaults that we actually don't want to overwrite.
+	--Keep these at the bottom please
+=====================================================*/
+
+	/*	Makes sure the last links don't have a border right applied to them.	*/
+	#wpadminbar ul li:last-child,
+	#wpadminbar ul li:last-child .ab-item {
+		border-right: 0;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+	}
+
+
+
+
+
+

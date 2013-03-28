@@ -1,0 +1,125 @@
+/* ========================================
+	General
+ ======================================== */
+	.group:before,
+	.group:after {
+		content:"";
+		display:table;
+	}
+	.group:after { clear:both; }
+	.group { zoom:1; } /* For IE 6/7 (trigger hasLayout) */
+
+
+/* ========================================
+	Settings page
+ ======================================== */
+
+	#tjg-admin-theme	.logo-display	{
+		display: block;
+	}
+
+	.section.hidden {
+		display:none;
+	}
+	
+	.section.showing	{
+		display:block;
+	}
+	
+	.at-clearfix {
+		clear:both;
+	}
+
+	.select-all-toggle {
+		display:block;
+		margin:10px 0;
+	}
+
+/* ========================================
+	Contact Form page
+ ======================================== */
+
+	.admin-form	{
+		border:1px solid #cccccc;
+		margin:15px 10px 15px 0;
+		padding:10px;
+	}
+
+	.admin-form > div	{
+		padding:10px 0;
+		clear: both;
+	}
+		
+	.formLeft	{ float:left; width:50%; padding-right:10px; }
+	.formRight	{  }
+	.formLeft, .formRight { box-sizing:border-box; }
+	.formLeft + .formLeft	{ width:25%; }
+	.formLeft + .formLeft + .formRight	{ width:24%; }
+
+
+	.formLeft input[type="text"],
+	.formRight input[type="text"]
+	{
+		box-sizing:border-box;
+		padding:5px;
+	}
+	.formLeft input[type="text"] { width:100%; }
+	.formRight input[type="text"] { width:49%; }
+
+/*	Labels */
+	.admin-form label
+	{
+		display: block;
+		color: #797979;
+		font-weight: 700;
+		line-height: 1.4em;
+	}
+	.admin-form label > span	{ color:#ff0000; }
+	.admin-form small	{ display:block; }
+	
+	.admin-form label.inline-label { display:inline; }
+
+	input[type="checkbox"] + .inline-label { margin: 0 15px 0 2px; }
+
+/*	Textarea */
+	.admin-form textarea
+	{
+		width: 100%;
+		min-width: 100%;
+		max-width: 100%;
+		min-height: 100px;
+		padding: 10px;
+		box-sizing: border-box;
+	}
+
+	.logo-holder { padding-top:10px; }
+	.logo-display { float:left; margin-right:10px; }
+
+/* Messages */
+
+	.success-message { 	color: #5fbf00; }	
+	.error-message { 	color: #bf0000; }	
+
+/* ========================================
+	Dashboard All Pages List
+ ======================================== */
+
+	.pagelist	{
+		float:left;
+		padding:5px;
+		font-size:12px;
+	}
+		
+	.pagelist	dt,
+	.pagelist	dd	{
+		margin:2px 0;
+	}	
+
+	.pagelist > dt	{
+		padding: 0 0 2px;
+		border-bottom: 1px solid #d6dcda;
+	}
+
+	.pagelist > dt > a	{ font-weight:bold; }
+	.pagelist > dd a	{ color:#898989; }
+	
