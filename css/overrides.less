@@ -113,15 +113,6 @@ Variables that need defining in our PHP:
 		.admin-text(@primary);
 	}
 
-/*	Changes the color for most of the top admin bar.  Somehow misses the far right section though.	*/
-	#wpadminbar,
-/*	This line takes care of the far right section	*/
-	#wpadminbar .ab-top-secondary {
-		background-color: @primary;
-		background-image: -moz-linear-gradient(bottom, @primary, @lighter);
-		background-image: -webkit-gradient(linear,left bottom,left top,from(@primary),to(@lighter));
-	}
-
 /*	Changes the color for the border-right of the admin bar list items.	*/
 	#wpadminbar .quicklinks > ul > li {
 		border-right: 1px solid @lighter;
