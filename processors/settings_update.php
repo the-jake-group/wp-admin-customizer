@@ -7,6 +7,7 @@
 	Checking if the images were uploaded, and if either of them was, then we attempt to move the file to the plugin folder.
 **/
 
+	$lg_name  = get_option("admin-theme-login-logo");
 	$lg_reset = isset( $_POST['lgReset'] );
 	$sm_reset = isset( $_POST['smReset'] );
 
@@ -74,7 +75,6 @@
 
 		if ( move_uploaded_file( $_FILES['lg-logo']['tmp_name'], TJG_AT_PATH.'/img/'.$lg_name ) )	{
 			update_option( 'admin-theme-login-logo', $lg_name );
-			$lg_size = getimagesize( TJG_AT_PATH.'/img/'.$lg_name );
 		}
 
 	} elseif ($lg_reset) {
@@ -99,6 +99,9 @@
 		}
 	}
 
+	if (file_exists(TJG_AT_PATH.'/img/'.$lg_name)) {
+		$lg_size = getimagesize( TJG_AT_PATH.'/img/'.$lg_name );
+	}
 
 
 
