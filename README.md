@@ -1,7 +1,7 @@
 WP Admin Customizer
 ===================
 
-This is a Wordpress pluginused to customize certain features and colors within WP-Admin
+This is a Wordpress plugin used to customize certain features and colors within WP-Admin
 
 The plugin adds the option to change the color of the admin bar, as well as change the Wordpress logo in the admin bar.  It can also be used to customize the logo on the login screen, and to hide certain dashboard widgets.  For developers, there are additional features such as a contact widget that can be added to the Dashboard.  The developer features are only available to users who have access to edit their plugin files.
 

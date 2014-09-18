@@ -10,17 +10,21 @@
 	$lg_reset = isset( $_POST['lgReset'] );
 	$sm_reset = isset( $_POST['smReset'] );
 
-//	Primary Color
+/* ==========================================================================
+	Save the Theme Color
+	========================================================================= */
+
 	if ( ! empty( $_POST['primary'] ) )	{
-		$primary = $_POST['primary'];
+		$primary_color = $_POST['primary'];
 		update_option('admin-theme-primary-color', $_POST['primary']);
 	} else {
-		$primary = get_option("admin-theme-primary-color");
+		$primary_color = get_option("admin-theme-primary-color");
 	} 
 
+/* ==========================================================================
+	Update the small logo
+	========================================================================= */
 
-
-//	Small Logo
 	if ( ! empty( $_FILES['sm-logo']['name'] ) )	{
 		$sm_ext		= pathinfo (basename($_FILES['sm-logo']['name']),PATHINFO_EXTENSION);
 		$sm_name 	= 'small-logo.'.$sm_ext;
@@ -53,7 +57,11 @@
 		}
 	}
 
-//	Custom Hover Effect
+
+/* ==========================================================================
+	Custom Hover effect for small logo
+	========================================================================= */
+
 	if ( isset( $_POST['custom_hover'] ) )	{
 		$custom_hover = 'on';
 		update_option( 'admin-theme-custom-hover', "true" );
@@ -64,7 +72,10 @@
 
 
 
-//	Large Logo	
+/* ==========================================================================
+	Save large logo
+	========================================================================= */
+
 	if ( ! empty( $_FILES['lg-logo']['name'] ) )	{
 
 		$lg_ext		= pathinfo (basename($_FILES['lg-logo']['name']),PATHINFO_EXTENSION);
@@ -102,7 +113,10 @@
 
 
 
-//	Rounded Corners
+/* ==========================================================================
+	Round Corners on login screen
+	========================================================================= */
+
 	if ( isset( $_POST['rounded'] ) )	{
 		$rounded = "25px";
 		update_option( 'admin-theme-rounded-corners', "true" );
@@ -132,22 +146,29 @@
 **/
 
 	$CSS_vars = array(
-		'primary' 	=> $primary,
-		'sm-logo' 	=> $sm_CSS,
-		'sm-hover' 	=> $custom_hover,
-		'lg-logo' 	=> $lg_CSS,
-		'lg-width' 	=> $lg_size[0].'px',
-		'lg-height' => $lg_size[1].'px',
-		'rounded' 	=> $rounded,
-		'sm-switch' => $smSwitch,
-		'lg-switch' => $lgSwitch
+		"primary" 	=> $primary_color,
+		"sm-logo" 	=> $sm_CSS,
+		"sm-hover" 	=> $custom_hover,
+		"lg-logo" 	=> $lg_CSS,
+		"rounded" 	=> $rounded,
+		"sm-switch" => $smSwitch,
+		"lg-switch" => $lgSwitch
 	);
 
-	$less    = new lessc( TJG_AT_PATH."/css/overrides.less" );
-	$css     = $less->parse( null, $CSS_vars );
-	$cssFile = fopen( TJG_AT_PATH.'/css/'.$wpdb->prefix.'override.css', 'w' );
-	
-	fwrite( $cssFile, $css );
-	fclose( $cssFile );
+	if ( isset( $lg_size) ) {
+		$CSS_vars["lg-width"]  = $lg_size[0] . "px";
+		$CSS_vars["lg-height"] = $lg_size[1] . "px";
+	}
+
+	$less     = new lessc( TJG_AT_PATH . "css/overrides.less" );
+	$css      = $less->parse( null, $CSS_vars );
+	$css_file = fopen( TJG_AT_PATH . "css/" . $wpdb->prefix . "override.css" , "w" );
+
+	if ( $css_file ) {
+		fwrite( $css_file, $css );
+		fclose( $css_file );
+	}
+
+
 
 ?>
