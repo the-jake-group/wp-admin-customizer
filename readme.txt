@@ -2,14 +2,21 @@
 Contributors: The Jake Group
 Tags: Theming, Customization, Admin
 Requires at least: 3.2.1
-Tested up to: 3.4.1
+Tested up to: 4.0.0
 Stable tag: trunk
 
-This plugin is used to customize certain features and colors within WP-Admin
+This plugin is used to customize certain features and admin color schemes within WordPress.
 
 == Description ==
 
-The plugin adds the option to change the color of the admin bar, as well as change the Wordpress logo in the admin bar.  It can also be used to customize the logo on the login screen, and to hide certain dashboard widgets.  For developers, there are additional features such as a contact widget that can be added to the Dashboard.  The developer features are only available to users who have access to edit their plugin files.
+This plugin gives you the ability to create and edit a custom admin color scheme.  It also allows you to change the login logo for WordPress, and disable dashboard widgets.
+
+== Upgrade Notice ==
+
+Version 2.0.0 represents a complete rewrite, and a few breaking changes:
+* Due to the way WordPress now handles colors in the admin, you will need to reset all of your settings when upgrading.
+* The Developer Features (Contact Form) have been removed.
+* The Rounded Corners on login screen has been removed.
 
 == Installation ==
 
@@ -19,10 +26,15 @@ The plugin adds the option to change the color of the admin bar, as well as chan
 
 == Screenshots ==
 
-1. A customized Admin Bar
-2. The admin bar customization screen
+1. The settings page. 
+2. The created color scheme.
 
 == Changelog ==
+
+= 2.0.0 =
+* Due to the way WordPress now handles colors in the admin, you will need to reset all of your settings when upgrading.
+* The Developer Features (Contact Form) have been removed
+* 
 
 = 1.0 =
 * Initial Release
