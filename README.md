@@ -28,3 +28,9 @@ Version 2.0.0 represents a complete rewrite, and a few breaking changes:
 ## Notes
 
 This plugin is also kept in the Wordpress plugin repository.  Both versions will be kept up to date, though this repo will be used for development and testing.
+
+Todo
+--------------
+- Use Wordpress Media Uploader for image uploads.
+- Move css/image files to a folder in the media directory.
+- Update Less files to account for new color options.
